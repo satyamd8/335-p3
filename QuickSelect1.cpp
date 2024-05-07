@@ -8,6 +8,7 @@ Date: 5/3/2024
 #include "QuickSelect1.hpp"
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 /*
     Quick Select Implementation used from geeksforgeeks.org
