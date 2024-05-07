@@ -49,8 +49,9 @@ int main(){
     fin.close();
 
     //method calls
+    quickSelect1(header, data);
     stdSort(header, data);
 
     //call methods here
-    //cout << "done" << endl;
+    cout << "done" << endl;
 }

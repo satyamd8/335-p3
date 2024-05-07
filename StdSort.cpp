@@ -11,6 +11,12 @@ Date: 5/3/2024
 #include <algorithm>
 #include <vector>
 
+
+/*
+    uses std::sort from c++ library to sort the data vector from least to greatest
+    then assigns the different integer values with int division
+    prints header and all values
+*/
 void stdSort(const std::string & header, std::vector<int> data){
     std::sort(data.begin(), data.end());
 
