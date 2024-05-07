@@ -7,3 +7,9 @@ Date: 5/3/2024
 */
 #include "CountingSort.hpp"
 #include <iostream>
+
+void countingSort(const std::string & header, std::vector<int> data){
+
+}
+
+/* Copyright 2024, Satyam Dhar */

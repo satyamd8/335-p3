@@ -16,6 +16,41 @@ Date: 5/3/2024
 #include "CountingSort.hpp"
 using namespace std;
 
+/*
+    takes in input file using ifstream
+    prints first line of input file
+    then uses istringstream to process each value of the second line
+        each value is pushed back to an int vector
+
+*/
 int main(){
-    
+    string input = "test_input.txt";
+    ifstream fin(input);
+
+    vector <int> data;
+
+    string header;
+    getline(fin, header);
+    /*
+    if (getline(fin, header)){
+        cout << header << endl;
+    }
+    */
+
+    string nums;
+    if (getline(fin, nums)){
+        istringstream number(nums);
+        int value;
+        
+        while (number >> value){
+            data.push_back(value);
+        }
+    }
+    fin.close();
+
+    //method calls
+    stdSort(header, data);
+
+    //call methods here
+    //cout << "done" << endl;
 }
