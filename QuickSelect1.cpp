@@ -81,11 +81,10 @@ void quickSelect1(const std::string & header, std::vector<int> data){
         quick(data, p50 + 1, data.size() - 1, p75);   //75 SCUFFED
     }
 
-    //how to find other stuff???
     int min = *std::min_element(data.begin(), data.begin() + p25);
     int p25a = data[p25];
     int p50a = data[p50];
-    int p75a = data[p75]; //SCUFFED
+    int p75a = data[p75]; 
     int max = *std::max_element(data.begin() + p75, data.end());
 
     std::cout << header << std::endl;

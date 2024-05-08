@@ -8,6 +8,7 @@ Date: 5/3/2024
 #ifndef QuickSelect1_hpp
 #define QuickSelect1_hpp
 
+#include "InsertionSort.hpp"
 #include <iostream>
 #include <vector>
 #include <chrono>
