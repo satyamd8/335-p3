@@ -86,7 +86,7 @@ void quickSelect1(const std::string & header, std::vector<int> data){
     int p25a = data[p25];
     int p50a = data[p50];
     int p75a = data[p75]; 
-    int max = *std::max_element(data.begin() + p75, data.end());
+    int max = *std::max_element(data.begin() + p75 - 1, data.end()); //SCUFFED
 
     std::cout << header << std::endl;
     std::cout << "Min: " << min << std::endl;
