@@ -20,7 +20,7 @@ Date: 5/3/2024
 void stdSort(const std::string & header, std::vector<int> data){
     std::sort(data.begin(), data.end());
 
-    for (int i = (data.size() * 3) / 4; i < data.size(); i++){
+    for (int i = 0; i < data.size(); i++){
         std::cout << data[i] << " ";
     }
 
