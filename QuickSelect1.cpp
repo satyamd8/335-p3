@@ -79,14 +79,18 @@ void quickSelect1(const std::string & header, std::vector<int> data){
     else{
         quick(data, 0, data.size() - 1, p50);         //median
         quick(data, 0, p50 - 1, p25);                 //25
-        quick(data, p50 + 1, data.size() - 1, p75);   //75 SCUFFED
+        quick(data, p50 , data.size() - 1, p75);   //75 SCUFFED
+    }
+
+    for (int i = p75; i < data.size(); i++){
+        std::cout << data[i] << " ";
     }
 
     int min = *std::min_element(data.begin(), data.begin() + p25);
     int p25a = data[p25];
     int p50a = data[p50];
     int p75a = data[p75]; 
-    int max = *std::max_element(data.begin() + p75 - 1, data.end()); //SCUFFED
+    int max = *std::max_element(data.begin() + p75, data.end());
 
     std::cout << header << std::endl;
     std::cout << "Min: " << min << std::endl;
