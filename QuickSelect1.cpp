@@ -82,10 +82,12 @@ void quickSelect1(const std::string & header, std::vector<int> data){
         quick(data, p50, data.size() - 1, p50);      //75 SCUFFED
     }
 
+    /*
     for (int i = 0; i < data.size(); i++){
         std::cout << data[i] << " ";
     }
     std::cout << "\n";
+    */
 
     int min = *std::min_element(data.begin(), data.begin() + p25);
     int p25a = data[p25];
