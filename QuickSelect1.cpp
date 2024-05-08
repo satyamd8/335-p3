@@ -95,11 +95,13 @@ void quickSelect1(const std::string & header, std::vector<int> data){
     }
 
     //how to find other stuff???
-    int min = *std::min_element(data.begin(), data.begin() + p25);
+    int min = data[0];
+    //*std::min_element(data.begin(), data.begin() + p25);
     int p25a = data[data.size()/4];
     int p50a = data[data.size()/2];
     int p75a = data[(data.size() * 3) / 4]; //SCUFFED
-    int max = *std::max_element(data.begin() + p75, data.end());
+    int max = data[data.size()];
+    //*std::max_element(data.begin() + p75, data.end());
 
     std::cout << header << std::endl;
     std::cout << "Min: " << min << std::endl;

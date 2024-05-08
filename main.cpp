@@ -10,6 +10,7 @@ Date: 5/3/2024
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <algorithm>
 #include "StdSort.hpp"
 #include "QuickSelect1.hpp"
 #include "QuickSelect2.hpp"
@@ -49,7 +50,7 @@ int main(){
     fin.close();
 
     //method calls
-    //stdSort(header, data);
+    stdSort(header, data);
     quickSelect1(header, data);
 
     //call methods here
