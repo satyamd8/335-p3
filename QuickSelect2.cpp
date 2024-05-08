@@ -7,11 +7,13 @@ Date: 5/3/2024
 */
 #include "QuickSelect2.hpp"
 #include "InsertionSort.hpp"
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
 #include <set>
 #include <iterator>
+#include <climits>
 
 /* 
     Quick Select implementation based off geeksforgeeks.org, modified to match instructions

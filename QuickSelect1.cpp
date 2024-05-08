@@ -7,9 +7,11 @@ Date: 5/3/2024
 */
 #include "QuickSelect1.hpp"
 #include "InsertionSort.hpp"
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <climits>
 
 /*
     Quick Select Implementation used from geeksforgeeks.org
@@ -58,8 +60,7 @@ int quick(std::vector<int>& data, int l, int r, int k)
             return quick(data, l, index - 1, k); 
 
         // Else recur for right subarray 
-        return quick(data, index + 1, r,  
-                            k - index + l - 1); 
+        return quick(data, index + 1, r, k - index + l - 1); 
     } 
 
     // If k is more than number of  
