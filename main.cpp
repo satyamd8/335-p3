@@ -49,7 +49,7 @@ int main(){
     fin.close();
 
     //method calls
-    stdSort(header, data);
+    //stdSort(header, data);
     quickSelect1(header, data);
 
     //call methods here
