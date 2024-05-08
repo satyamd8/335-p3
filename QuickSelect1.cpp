@@ -6,6 +6,7 @@ Description: Prototype functions for the Quick Select method of sorting
 Date: 5/3/2024
 */
 #include "QuickSelect1.hpp"
+#include "InsertionSort.hpp"
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -65,6 +66,7 @@ int quickSelect(std::vector<int>& data, int l, int r, int k)
     return INT_MAX; 
 } 
 
+/*
 void insertionSort(std::vector<int>& data, int left, int right) {
     for (int i = left + 1; i <= right; ++i) {
         int key = data[i];
@@ -76,6 +78,7 @@ void insertionSort(std::vector<int>& data, int left, int right) {
         data[j + 1] = key;
     }
 }
+*/
 
 void quickSelect1(const std::string & header, std::vector<int> data){
     int p25 = data.size()/4;
