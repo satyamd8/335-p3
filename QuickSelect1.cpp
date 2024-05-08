@@ -21,9 +21,10 @@ Date: 5/3/2024
 //  it and greater elements to right 
 int partition(std::vector<int>& data, int l, int r) 
 { 
-    int x = data[r], i = l; 
+    int pivot = data[r]; 
+    int i = l; 
     for (int j = l; j <= r - 1; j++) { 
-        if (data[j] <= x) { 
+        if (data[j] <= pivot) { 
             std::swap(data[i], data[j]); 
             i++; 
         } 
@@ -36,7 +37,7 @@ int partition(std::vector<int>& data, int l, int r)
 //  element in arr[l..r] using QuickSort  
 //  based method.  ASSUMPTION: ALL ELEMENTS 
 //  IN ARR[] ARE DISTINCT 
-int quickSelect(std::vector<int>& data, int l, int r, int k) 
+int quick(std::vector<int>& data, int l, int r, int k) 
 { 
     // If k is smaller than number of  
     // elements in array 
@@ -54,10 +55,10 @@ int quickSelect(std::vector<int>& data, int l, int r, int k)
         // If position is more, recur  
         // for left subarray 
         if (index - l > k - 1)  
-            return quickSelect(data, l, index - 1, k); 
+            return quick(data, l, index - 1, k); 
 
         // Else recur for right subarray 
-        return quickSelect(data, index + 1, r,  
+        return quick(data, index + 1, r,  
                             k - index + l - 1); 
     } 
 
@@ -65,20 +66,6 @@ int quickSelect(std::vector<int>& data, int l, int r, int k)
     // elements in array 
     return INT_MAX; 
 } 
-
-/*
-void insertionSort(std::vector<int>& data, int left, int right) {
-    for (int i = left + 1; i <= right; ++i) {
-        int key = data[i];
-        int j = i - 1;
-        while (j >= left && data[j] > key) {
-            data[j + 1] = data[j];
-            j--;
-        }
-        data[j + 1] = key;
-    }
-}
-*/
 
 void quickSelect1(const std::string & header, std::vector<int> data){
     int p25 = data.size()/4;
@@ -89,19 +76,17 @@ void quickSelect1(const std::string & header, std::vector<int> data){
         insertionSort(data, 0, data.size() - 1);
     }
     else{
-        quickSelect(data, 0, data.size() - 1, p50);         //median
-        quickSelect(data, 0, p50 - 1, p25);                 //25
-        quickSelect(data, p50 + 1, data.size() - 1, p75);   //75 SCUFFED
+        quick(data, 0, data.size() - 1, p50);         //median
+        quick(data, 0, p50 - 1, p25);                 //25
+        quick(data, p50 + 1, data.size() - 1, p75);   //75 SCUFFED
     }
 
     //how to find other stuff???
-    int min = data[0];
-    //*std::min_element(data.begin(), data.begin() + p25);
-    int p25a = data[data.size()/4];
-    int p50a = data[data.size()/2];
-    int p75a = data[(data.size() * 3) / 4]; //SCUFFED
-    int max = data[data.size()];
-    //*std::max_element(data.begin() + p75, data.end());
+    int min = *std::min_element(data.begin(), data.begin() + p25);
+    int p25a = data[p25];
+    int p50a = data[p50];
+    int p75a = data[p75]; //SCUFFED
+    int max = *std::max_element(data.begin() + p75, data.end());
 
     std::cout << header << std::endl;
     std::cout << "Min: " << min << std::endl;
