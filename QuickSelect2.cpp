@@ -19,6 +19,26 @@ Date: 5/3/2024
     Quick Select implementation based off geeksforgeeks.org, modified to match instructions
 */
 
+/*
+
+
+
+
+
+
+
+REDO COMPLETELY
+READ BB INSTRUCTIONS
+USE VECTOR OR LIST INSTEAD OF SET LIEK DUBASS GPT
+
+
+
+
+
+
+
+*/
+
 // Standard partition process of QuickSort(). 
 // It considers the last element as pivot 
 //  and moves all smaller element to left of 
