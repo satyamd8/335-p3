@@ -11,7 +11,6 @@ Date: 5/3/2024
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <set>
 #include <iterator>
 #include <climits>
 
@@ -61,44 +60,48 @@ int partition(std::vector<int>& data, int l, int r)
 //  element in arr[l..r] using QuickSort  
 //  based method.  ASSUMPTION: ALL ELEMENTS 
 //  IN ARR[] ARE DISTINCT 
-int quickRecursive(std::vector<int>& data, int l, int r, std::set<int>& k) 
-{ 
-    int index = partition(data, l, r); // Partition and get the pivot index
+int quickRecursive(std::vector<int>& data, int l, int r, std::vector<int>& keys) 
+{
+    if (keys.empty() || l >= r) {
+        return INT_MAX; // No more keys to find or out of bounds
+    }
 
-    std::set<int> found_keys;
-    for (int key : k) {
-        if (key == index) {
-            found_keys.insert(key);
+    int index = partition(data, l, r); // Partition the data and get the pivot index
+
+    // Remove keys that are found at the current partition index
+    std::vector<int> found_keys;
+    for (auto it = keys.begin(); it != keys.end();) {
+        if (*it == index) {
+            found_keys.push_back(*it);
+            it = keys.erase(it); // Remove the found key
+        } else {
+            ++it; // Continue to the next key
         }
     }
 
-    // Remove the found keys from the set
-    for (int found : found_keys) {
-        k.erase(found);
-    }
+    if (!keys.empty()) {
+        // Determine the minimum and maximum remaining keys to guide recursion
+        int min_key = *std::min_element(keys.begin(), keys.end());
+        int max_key = *std::max_element(keys.begin(), keys.end());
 
-    // Recurse on the necessary sides
-    if (!k.empty()) {
-        int min_key = *k.begin();
-        int max_key = *k.rbegin();
-
-        if (min_key < index) { // Recurse left
-            quickRecursive(data, l, index - 1, k);
+        if (min_key < index) { // Recurse left if there are keys to the left
+            quickRecursive(data, l, index - 1, keys);
         }
 
-        if (max_key > index) { // Recurse right
-            quickRecursive(data, index + 1, r, k);
+        if (max_key > index) { // Recurse right if there are keys to the right
+            quickRecursive(data, index + 1, r, keys);
         }
-    }
-
-    // If k is more than number of  
-    // elements in array 
-    return INT_MAX; 
-} 
+    } 
+}
 
 void quickSelect2(const std::string & header, std::vector<int> data){
     int n = data.size();
-    std::set<int> keys = {0, n / 4, n / 2, (3 * n) / 4, n - 1}; // The five keys to find
+    std::vector<int> keys; 
+    keys.push_back(0);
+    keys.push_back(n/4);
+    keys.push_back(n/2);
+    keys.push_back((3 * n) / 4);
+    keys.push_back(n-1);
 
     // Use quickSelect with the set of keys to isolate desired positions
     quickRecursive(data, 0, n - 1, keys);

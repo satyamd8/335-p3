@@ -50,10 +50,10 @@ int main(){
     fin.close();
 
     //method calls
-    //stdSort(header, data);
+    stdSort(header, data);
     //quickSelect1(header, data);
-    //quickSelect2(header, data);
-    countingSort(header, data);
+    quickSelect2(header, data);
+    //countingSort(header, data);
 
     //call methods here
     //cout << "done" << endl;
