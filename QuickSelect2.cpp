@@ -19,29 +19,9 @@ Date: 5/3/2024
 */
 
 /*
-
-
-
-
-
-
-
-REDO COMPLETELY
-READ BB INSTRUCTIONS
-USE VECTOR OR LIST INSTEAD OF SET LIEK DUBASS GPT
-
-
-
-
-
-
-
+    set last element of data as the pivot
+    moves all smaller elements to the left, greater elements to the right of pivot
 */
-
-// Standard partition process of QuickSort(). 
-// It considers the last element as pivot 
-//  and moves all smaller element to left of 
-//  it and greater elements to right 
 int partition(std::vector<int>& data, int l, int r) 
 { 
     int pivot = data[r]; 
@@ -56,44 +36,56 @@ int partition(std::vector<int>& data, int l, int r)
     return i; 
 } 
 
-// This function returns k'th smallest  
-//  element in arr[l..r] using QuickSort  
-//  based method.  ASSUMPTION: ALL ELEMENTS 
-//  IN ARR[] ARE DISTINCT 
+/*
+    checks the keys vector to proceed
+    starts with initial partition
+    sets new vector of found keys
+    uses iterator to check through keys vector
+        checks if key is = to pivot
+            pushes found key to new vector
+            removes key from keys vector
+        if key isn't pivot, move on to next key
+    determines min and max key using min/max_element from standard c++ library
+    if min key is less than pivot, or max key is greater than pivot, recuirsively call quickselect
+*/
 int quickRecursive(std::vector<int>& data, int l, int r, std::vector<int>& keys) 
 {
     if (keys.empty() || l >= r) {
-        return INT_MAX; // No more keys to find or out of bounds
+        return INT_MAX; 
     }
 
-    int index = partition(data, l, r); // Partition the data and get the pivot index
+    int index = partition(data, l, r); 
 
-    // Remove keys that are found at the current partition index
     std::vector<int> found_keys;
     for (auto it = keys.begin(); it != keys.end();) {
         if (*it == index) {
             found_keys.push_back(*it);
-            it = keys.erase(it); // Remove the found key
+            it = keys.erase(it);
         } else {
-            ++it; // Continue to the next key
+            ++it;
         }
     }
 
     if (!keys.empty()) {
-        // Determine the minimum and maximum remaining keys to guide recursion
         int min_key = *std::min_element(keys.begin(), keys.end());
         int max_key = *std::max_element(keys.begin(), keys.end());
 
-        if (min_key < index) { // Recurse left if there are keys to the left
+        if (min_key < index) { 
             quickRecursive(data, l, index - 1, keys);
         }
 
-        if (max_key > index) { // Recurse right if there are keys to the right
+        if (max_key > index) { 
             quickRecursive(data, index + 1, r, keys);
         }
     } 
 }
 
+/*
+    creates keys vector and fills it with the proper percentile values, and min/max
+    calls modified quickSelect with keys vector
+    sets info variables
+    prints info variables
+*/
 void quickSelect2(const std::string & header, std::vector<int> data){
     int n = data.size();
     std::vector<int> keys; 
@@ -103,13 +95,12 @@ void quickSelect2(const std::string & header, std::vector<int> data){
     keys.push_back((3 * n) / 4);
     keys.push_back(n-1);
 
-    // Use quickSelect with the set of keys to isolate desired positions
     quickRecursive(data, 0, n - 1, keys);
 
     int min = data[0]; 
-    int p25 = data[n / 4];          // 25th 
-    int p50 = data[n / 2];          // Median
-    int p75 = data[(3 * n) / 4];    // 75th 
+    int p25 = data[n / 4];          
+    int p50 = data[n / 2];          
+    int p75 = data[(3 * n) / 4];    
     int max = data[n - 1]; 
 
     std::cout << header << std::endl;

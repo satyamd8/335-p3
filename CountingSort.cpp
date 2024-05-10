@@ -16,6 +16,25 @@ struct Info{
     int freq;
 };
 
+/*
+    create hashmap to track values and their frequency
+    fills hashmap with values and frequency coutn from input data vector
+
+    create vector of Info objects, to store frequencies of each element
+    goes through hashmap and creates Info objects to fill freqVec with
+
+    sorts the objects in freqVec using std::sort from the standard library
+        uses a lambda expression to compare the values of each object
+        sorts from least to greatest
+
+    initializes info variables
+    iterates through sorted freqVec
+        each percentile is checked by:
+            if it has been found yet
+            if the count int has exceeded the data size of that percentiles
+    
+    prints all info
+*/
 void countingSort(const std::string & header, std::vector<int> data){
     std::unordered_map<int, int> freqMap;
     for (int i = 0; i < data.size(); i++){
@@ -34,27 +53,27 @@ void countingSort(const std::string & header, std::vector<int> data){
 
     int count = 0;
     int min = freqVec.front().value;
-    int p25 = -1;
-    int p50 = -1;
-    int p75 = -1;
+    int p25 = 0;
+    int p50 = 0;
+    int p75 = 0;
     int max = freqVec.back().value;
 
     for (const auto &item : freqVec){
         count += item.freq;
-        if (p25 == -1 && count >= data.size() * 0.25) {
-            p25 = item.value; // 25th percentile
+        if (p25 == 0 && count >= data.size() * 0.25) {
+            p25 = item.value; 
         }
 
-        if (p50 == -1 && count >= data.size() * 0.5) {
-            p50 = item.value; // 50th percentile (median)
+        if (p50 == 0 && count >= data.size() * 0.5) {
+            p50 = item.value; 
         }
 
-        if (p75 == -1 && count >= data.size() * 0.75) {
-            p75 = item.value; // 75th percentile
+        if (p75 == 0 && count >= data.size() * 0.75) {
+            p75 = item.value; 
         }
 
-        if (p25 != -1 && p50 != -1 && p75 != -1) {
-            break; // If all percentiles are found, we can exit early
+        if (p25 != 0 && p50 != 0 && p75 != 0) {
+            break; 
         }
     }
 

@@ -3,6 +3,12 @@
 #include <algorithm>
 #include <vector>
 
+
+/*
+    sets index/position variables and key variables
+    checks which elements are greater than the key, continuously placing them forward
+        stops when j is less than the key
+*/
 void insertionSort(std::vector<int>& data, int left, int right) {
     for (int i = left + 1; i <= right; ++i) {
         int key = data[i];

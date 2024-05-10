@@ -14,13 +14,13 @@ Date: 5/3/2024
 #include <climits>
 
 /*
-    Quick Select Implementation used from geeksforgeeks.org
+    Quick Select Implementation derived from geeksforgeeks.org
 */
 
-// Standard partition process of QuickSort(). 
-// It considers the last element as pivot 
-//  and moves all smaller element to left of 
-//  it and greater elements to right 
+/*
+    set last element of data as the pivot
+    moves all smaller elements to the left, greater elements to the right of pivot
+*/
 int partition(std::vector<int>& data, int l, int r) 
 { 
     int pivot = data[r]; 
@@ -35,40 +35,42 @@ int partition(std::vector<int>& data, int l, int r)
     return i; 
 } 
 
-// This function returns k'th smallest  
-//  element in arr[l..r] using QuickSort  
-//  based method.  ASSUMPTION: ALL ELEMENTS 
-//  IN ARR[] ARE DISTINCT 
+
+/*
+    calls first partition
+    depending on the position, function will either:
+        recursively call itself for more partitions
+        or if sorted, will return the kth smaller element in the vector
+*/
 int quick(std::vector<int>& data, int l, int r, int k) 
 { 
-    // If k is smaller than number of  
-    // elements in array 
     if (k > 0 && k <= r - l + 1) { 
-
-        // Partition the array around last  
-        // element and get position of pivot  
-        // element in sorted array 
         int index = partition(data, l, r); 
 
-        // If position is same as k 
-        if (index - l == k - 1) 
-            return data[index]; 
+        if (index - l == k - 1){
+            return data[index];
+        }
 
-        // If position is more, recur  
-        // for left subarray 
-        if (index - l > k - 1)  
+        if (index - l > k - 1){  
             return quick(data, l, index - 1, k); 
+        }
 
-        // Else recur for right subarray 
         return quick(data, index + 1, r, k - index + l - 1); 
     } 
-
-    // If k is more than number of  
-    // elements in array 
     return INT_MAX; 
 } 
 
+
+/*
+    First initializes the percentile variables to be used later
+    Checks if data has more then 20 elements
+        if yes, uses insertion sort
+        if not, uses quickSelect
+    min and max are calculated using min/max_element on the sorted vector (from the standard c++ library)
+    prints all information
+*/
 void quickSelect1(const std::string & header, std::vector<int> data){
+    int p25a, p50a, p75a;
     int p25 = data.size()/4;
     int p50 = data.size()/2;
     int p75 = (data.size() * 3) / 4;
@@ -77,26 +79,12 @@ void quickSelect1(const std::string & header, std::vector<int> data){
         insertionSort(data, 0, data.size() - 1);
     }
     else{
-        quick(data, 0, data.size() - 1, p50);         //median
-        quick(data, 0, p50, p25);                 //25
-        quick(data, p50, data.size() - 1, p50);      //75 SCUFFED
+        p50a = quick(data, 0, data.size() - 1, p50);         //median
+        p25a = quick(data, 0, p50, p25);                 //25
+        p75a = quick(data, 0, data.size() - 1, p75);      //75 SCUFFED
     }
 
-    //solution for 75 lies in the "k" parameter
-    // the parameter has to relate to the input that it's receiving for some reason
-    // revisit
-
-    /*
-    for (int i = p75; i < data.size(); i++){
-        std::cout << data[i] << " ";
-    }
-    std::cout << "\n";
-    */
-
-    int min = *std::min_element(data.begin(), data.begin() + p25);
-    int p25a = data[p25];
-    int p50a = data[p50];
-    int p75a = data[p75]; 
+    int min = *std::min_element(data.begin(), data.begin() + p25); 
     int max = *std::max_element(data.begin() + p75, data.end());
 
     std::cout << header << std::endl;

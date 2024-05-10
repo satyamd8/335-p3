@@ -20,13 +20,6 @@ Date: 5/3/2024
 void stdSort(const std::string & header, std::vector<int> data){
     std::sort(data.begin(), data.end());
 
-    /*
-    for (int i = 0; i < data.size(); i++){
-        std::cout << data[i] << " ";
-    }
-    std::cout << "\n";
-    */
-
     int min = data[0];
     int p25 = data[data.size()/4];
     int p50 = data[data.size()/2];
