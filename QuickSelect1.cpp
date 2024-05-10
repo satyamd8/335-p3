@@ -86,12 +86,12 @@ void quickSelect1(const std::string & header, std::vector<int> data){
     // the parameter has to relate to the input that it's receiving for some reason
     // revisit
 
-    
+    /*
     for (int i = p75; i < data.size(); i++){
         std::cout << data[i] << " ";
     }
     std::cout << "\n";
-    
+    */
 
     int min = *std::min_element(data.begin(), data.begin() + p25);
     int p25a = data[p25];
