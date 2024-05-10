@@ -72,19 +72,22 @@ void quickSelect1(const std::string & header, std::vector<int> data){
     int p25 = data.size()/4;
     int p50 = data.size()/2;
     int p75 = (data.size() * 3) / 4;
-
+    
     if (data.size() <= 20){
         insertionSort(data, 0, data.size() - 1);
     }
     else{
         quick(data, 0, data.size() - 1, p50);         //median
         quick(data, 0, p50 - 1, p25);                 //25
-        quick(data, p50 , data.size() - 1, p75);   //75 SCUFFED
+        quick(data, p50, data.size() - 1, p50);      //75 SCUFFED
     }
 
-    for (int i = p75; i < data.size(); i++){
+    /*
+    for (int i = 0; i < data.size(); i++){
         std::cout << data[i] << " ";
     }
+    std::cout << "\n";
+    */
 
     int min = *std::min_element(data.begin(), data.begin() + p25);
     int p25a = data[p25];

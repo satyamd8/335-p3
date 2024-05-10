@@ -25,7 +25,7 @@ using namespace std;
 
 */
 int main(){
-    string input = "test_input.txt";
+    string input = "mytest.txt";
     ifstream fin(input);
 
     vector <int> data;
