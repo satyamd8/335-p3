@@ -12,6 +12,7 @@ Date: 5/3/2024
 #include <algorithm>
 #include <vector>
 #include <climits>
+#include <chrono>
 
 /*
     Quick Select Implementation derived from geeksforgeeks.org

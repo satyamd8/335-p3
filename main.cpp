@@ -49,8 +49,8 @@ int main(){
     }
     fin.close();
 
-    //stdSort(header, data);
-    //quickSelect1(header, data);
-    //quickSelect2(header, data);
+    stdSort(header, data);
+    quickSelect1(header, data);
+    quickSelect2(header, data);
     countingSort(header, data);
 }

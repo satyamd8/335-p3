@@ -10,6 +10,7 @@ Date: 5/3/2024
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <chrono>
 
 struct Info{
     int value;
@@ -75,8 +76,8 @@ void countingSort(const std::string & header, std::vector<int> data){
         if (p25 != 0 && p50 != 0 && p75 != 0) {
             break; 
         }
-    }
-
+    } 
+    
     std::cout << header << std::endl;
     std::cout << "Min: " << min << std::endl;
     std::cout << "P25: " << p25 << std::endl;

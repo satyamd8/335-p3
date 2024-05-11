@@ -13,6 +13,7 @@ Date: 5/3/2024
 #include <vector>
 #include <iterator>
 #include <climits>
+#include <chrono>
 
 /* 
     Quick Select implementation based off geeksforgeeks.org, modified to match instructions
@@ -48,8 +49,7 @@ int partition(std::vector<int>& data, int l, int r)
     determines min and max key using min/max_element from standard c++ library
     if min key is less than pivot, or max key is greater than pivot, recuirsively call quickselect
 */
-int quickRecursive(std::vector<int>& data, int l, int r, std::vector<int>& keys) 
-{
+int quickRecursive(std::vector<int>& data, int l, int r, std::vector<int>& keys) {
     if (keys.empty() || l >= r) {
         return INT_MAX; 
     }
@@ -78,6 +78,8 @@ int quickRecursive(std::vector<int>& data, int l, int r, std::vector<int>& keys)
             quickRecursive(data, index + 1, r, keys);
         }
     } 
+
+    return 0;
 }
 
 /*
@@ -102,7 +104,7 @@ void quickSelect2(const std::string & header, std::vector<int> data){
     int p50 = data[n / 2];          
     int p75 = data[(3 * n) / 4];    
     int max = data[n - 1]; 
-
+    
     std::cout << header << std::endl;
     std::cout << "Min: " << min << std::endl;
     std::cout << "P25: " << p25 << std::endl;
